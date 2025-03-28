@@ -11,4 +11,4 @@
 
 ## Contributions
 
-This website is a modified fork of [Ashish Makes](https://github.com/ashish-makes/django-tailwind-blog). I uses Django and tailwind to create an aesthetic and responsive portfolio site.
+This website is a modified fork of [Ashish Makes](https://github.com/ashish-makes/django-tailwind-blog). It uses Django and tailwind to create an aesthetic and responsive portfolio site.
