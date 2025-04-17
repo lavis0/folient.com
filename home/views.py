@@ -61,7 +61,7 @@ def contact (request):
                 Email:\n\t\t{}\n
                 Phone:\n\t\t{}\n
                 '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['phone'])
-                send_mail('You got a mail!', message, '', ['dev.ash.py@gmail.com'])
+                send_mail('You got a mail!', message, '', ['josh@folient.com'])
                 messages.success(request, 'Your message was sent.')
                 # return HttpResponseRedirect('/thanks')
             else:
