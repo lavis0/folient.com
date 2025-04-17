@@ -46,7 +46,7 @@ def contact (request):
             messages.error(request, 'One or more fields are empty!')
         else:
             email_pattern = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-            phone_pattern = re.compile(r'^[0-9]{10}$')
+            phone_pattern = re.compile(r'^\+?\d{10,12}$')
 
             if email_pattern.match(email) and phone_pattern.match(phone):
                 form_data = {
