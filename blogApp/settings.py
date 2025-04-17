@@ -182,6 +182,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 
+EMAIL_TLS_CERTFILE = None
+EMAIL_TLS_KEYFILE = None
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
