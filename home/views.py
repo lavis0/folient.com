@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.db.models import Q
+from blogApp.settings import DEFAULT_FROM_EMAIL
 import random
 import re
 
@@ -61,7 +62,7 @@ def contact (request):
                 Email:\n\t\t{}\n
                 Phone:\n\t\t{}\n
                 '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['phone'])
-                send_mail('You got a mail!', message, 'josh@folient.com', ['josh@folient.com'])
+                send_mail('folient: Contact Me', message, DEFAULT_FROM_EMAIL, ['joshuabanga000@gmail.com'], fail_silently=True)
                 messages.success(request, 'Your message was sent.')
                 # return HttpResponseRedirect('/thanks')
             else:
