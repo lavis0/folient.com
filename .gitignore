@@ -9,6 +9,7 @@ myvenv/
 venv/
 env/
 vercel-test/
+vercelenv/
 
 # Database
 db.sqlite3
