@@ -62,7 +62,7 @@ def contact (request):
                 Email:\n\t\t{}\n
                 Phone:\n\t\t{}\n
                 '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['phone'])
-                send_mail('folient: Contact Me', message, DEFAULT_FROM_EMAIL, ['joshuabanga000@gmail.com'], fail_silently=False)
+                send_mail('folient: Contact Me', message, DEFAULT_FROM_EMAIL, ['josh@folient.com'], fail_silently=False)
                 messages.success(request, 'Your message was sent.')
                 # return HttpResponseRedirect('/thanks')
             else:
