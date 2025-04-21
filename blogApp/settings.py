@@ -187,3 +187,33 @@ DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 'auto',
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea.tinymce-widget', # Use a class selector for django-tinymce
+    'theme': 'silver',
+    'plugins': '''
+            preview searchreplace autolink autosave save directionality visualblocks
+            visualchars fullscreen image link media codesample table charmap pagebreak
+            nonbreaking anchor insertdatetime advlist lists wordcount help charmap
+            quickbars emoticons
+            ''', # Make sure these are available in the self-hosted version
+    'toolbar': '''
+            undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect |
+            alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist |
+            forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview save print |
+            insertfile image media link anchor codesample | ltr rtl
+            ''',
+    'contextmenu': 'link image imagetools table',
+    'menubar': True, # Or 'file edit view insert format tools table help' if you prefer
+    'statusbar': True,
+    # Add any other self-hosted compatible settings you need
+}
+# Point to the self-hosted JS file within your static files
+TINYMCE_JS_URL = 'tinymce/tinymce.min.js' # Relative to STATIC_URL
+TINYMCE_COMPRESSOR = False # Typically False for self-hosted
+TINYMCE_EXTRA_MEDIA = {} # Usually empty unless adding custom CSS/JS
