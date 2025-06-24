@@ -8,6 +8,7 @@ from django.db.models import Q
 from blogApp.settings import DEFAULT_FROM_EMAIL
 import random
 import re
+import markdown
 
 # Create your views here.
 # def index (request):
@@ -111,9 +112,13 @@ def search(request):
 
 
 def blogpost (request, slug):
+    md = markdown.Markdown(extensions=["extra", "codehilite", 'pymdownx.blocks.admonition',
+                                       'pymdownx.blocks.details', 'pymdownx.blocks.tab',
+                                       'pymdownx.emoji', "nl2br"])
     try:
-        blog = Blog.objects.get(slug=slug)
-        context = {'blog': blog}
+        blog_post = Blog.objects.get(slug=slug)
+        blog_post.content = md.convert(blog_post.content)
+        context = {'blog': blog_post}
         return render(request, 'blogpost.html', context)
     except Blog.DoesNotExist:
         context = {'message': 'Blog post not found'}
