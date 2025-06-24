@@ -11,8 +11,16 @@
 
 ## To-do
 
-- Add `django-markdownx'
+-[x] Add markdown
+-[ ] Make only phone number mandatory
+-[ ] Add number spacing for phone numbers (less strict)
+-[ ] Force footer to stick to the bottom of the page
+-[ ] Make initial CSS style so the background is blue
+-[ ] Add accessibility tags
+-[ ] Modify footer to make it more useful/aesthetic. Could contact and about go there?
+-[ ] Fix categories bug
+-[ ] Fix search bug
 
 ## Contributions
 
-This website is a modified fork of [Ashish Makes](https://github.com/ashish-makes/django-tailwind-blog). It uses Django and tailwind to create an aesthetic and responsive portfolio site.
+This website is a modified fork from [Ashish Makes](https://github.com/ashish-makes/django-tailwind-blog). It uses Django and tailwind to create an aesthetic and responsive portfolio site.
