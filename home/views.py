@@ -38,6 +38,7 @@ def thanks(request):
     return render(request, 'thanks.html')
 
 def contact (request):
+    context = {}
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -46,11 +47,20 @@ def contact (request):
         invalid_imput = ['', ' ']
         if name in invalid_imput or email in invalid_imput or phone in invalid_imput or message in invalid_imput:
             messages.error(request, 'One or more fields are empty!')
+            context.update({
+                'name': name,
+                'email': email,
+                'phone': phone,
+                'message': message,
+            })
         else:
             email_pattern = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-            phone_pattern = re.compile(r'^\+?\d{10,12}$')
+            phone_pattern = re.compile(r'^\+?(?=(?:[\s\d]*\d){10,15}$)[\d\s]+$') # (r'^\+?\d{10,12}$')
 
-            if email_pattern.match(email) and phone_pattern.match(phone):
+            is_email_valid = bool(email and email_pattern.match(email))
+            is_phone_valid = bool(phone and phone_pattern.match(phone))
+
+            if is_email_valid or is_phone_valid:
                 form_data = {
                 'name':name,
                 'email':email,
@@ -68,7 +78,13 @@ def contact (request):
                 # return HttpResponseRedirect('/thanks')
             else:
                 messages.error(request, 'Email or Phone is Invalid!')
-    return render(request, 'contact.html', {})
+                context.update({
+                    'name': name,
+                    'email': email,
+                    'phone': phone,
+                    'message': message,
+                })
+    return render(request, 'contact.html', context)
 
 def projects (request):
     return render(request, 'projects.html')

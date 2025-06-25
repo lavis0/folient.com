@@ -20,19 +20,19 @@
         {% csrf_token %}
         <div class='name'>
             <label for="name">Name</label><br>
-            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="name" placeholder="Your Name" name="name">
+            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="name" placeholder="Your Name" name="name" value="{{ name }}">
         </div>
         <div class='email'>
             <label for="email">Email</label><br>
-            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="email" placeholder="Your Email" name="email">
+            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="email" placeholder="Your Email" name="email" value="{{ email }}">
         </div>
         <div class='phone'>
             <label for="phone">Phone</label><br>
-            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="phone" placeholder="Your Phone Number" name="phone">
+            <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="phone" placeholder="Your Phone Number" name="phone" value="{{ phone }}">
         </div>
         <div class='message'>
             <label for="message">Message</label><br>
-            <textarea class='p-3 resize-none w-full h-72 my-2 bg-gray-900 border-slate-700 rounded-lg' placeholder="Message" name="message"></textarea>
+            <textarea class='p-3 resize-none w-full h-72 my-2 bg-gray-900 border-slate-700 rounded-lg' placeholder="Message" name="message">{{ message }}</textarea>
         </div>
         <button type="submit" class='bg-blue-600 p-2 px-4 rounded-[6px] hover:bg-gray-800 hover:outline hover:outline-blue-600 transition delay-75 ease-in-out my-3'><i class="fa-regular fa-paper-plane"></i> Send</button>
     </form>
