@@ -2,6 +2,9 @@
 *.pyc
 *~
 __pycache__
+*.pyo
+*.pyd
+.Python
 
 # Env
 .env
@@ -15,7 +18,8 @@ vercelenv/
 db.sqlite3
 
 # Static folder at project root
-/static/
+!/static/
+!/static/icons/
 
 # macOS
 ._*
@@ -28,5 +32,19 @@ db.sqlite3
 .history/
 *.code-workspace
 
-# Tutorial
-tutorial.py
+# JetBrains
+.idea
+
+# Generated
+theme/
+staticfiles/
+
+# Tailwind
+node_modules/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp

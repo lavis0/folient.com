@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "builds": [
         {
         "src": "blogApp/wsgi.py",
@@ -19,8 +20,24 @@
     ],
     "routes": [
         {
+            "src": "/static/css/(.*)",
+            "dest": "/css/$1"
+        },
+        {
+            "src": "/static/icons/(.*)",
+            "dest": "/icons/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/icons/favicon.ico"
+        },
+        {
             "src": "/static/(.*)",
-            "dest": "static/$1"
+            "dest": "/$1"
+        },
+        {
+            "src": "/media/(.*)",
+            "dest": "/media/$1"
         },
         {
             "src": "/(.*)",
