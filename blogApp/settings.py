@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh', 'folient.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh', 'folient.com', 'joshuabanga.me']
 
 
 # Application definition
@@ -167,13 +167,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    STATIC_URL = 'static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-    STATIC_URL = 'staticfiles/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
