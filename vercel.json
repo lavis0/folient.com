@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "builds": [
         {
         "src": "blogApp/wsgi.py",
@@ -21,6 +22,10 @@
         {
             "src": "/static/(.*)",
             "dest": "static/$1"
+        },
+        {
+            "src": "/media/(.*)",
+            "dest": "/media/$1"
         },
         {
             "src": "/(.*)",
