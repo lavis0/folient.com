@@ -59,7 +59,7 @@
             Checkout my latest posts
         </span>
         <div class="blogs my-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {% for blog in random_blogs|slice:3 %}
+            {% for blog in blogs %}
             <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05);"
                  class="hover:scale-105 hover:transform bg-gray-800 p-5 rounded-lg h-auto shadow-2xl transition-all duration-300">
                 <a href="/blogpost/{{blog.slug}}">
@@ -88,6 +88,7 @@
             </div>
             {% endfor %}
         </div>
+        {% if blogs|length == 3 %}
         <div class="flex justify-center">
             <a href="/blog">
                 <button class="bg-gray-800 p-2 px-4 rounded-[6px] hover:bg-blue-600 outline hover:outline-none outline-blue-600 transition delay-75 ease-in-out my-3">
@@ -95,7 +96,7 @@
                 </button>
             </a>
         </div>
-
+        {% endif %}
           {% comment %} <div class="grid grid-cols-1 md:grid-cols-2 md:-gap-7">
             <div class='flex flex-1 md:ml-36'>
                 <img class='rounded-lg mb-4 max-w-sm object-cover overflow-hidden h-auto' src="{% static 'images/post2.jpg' %}">

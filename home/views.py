@@ -18,16 +18,9 @@ import markdown
 #     return render(request, 'index.html', context)
 
 def index(request):
-    blogs = Blog.objects.all()
-    context = {}
-    
-    if blogs.count() >= 3:
-        # Only use random.sample if we have enough blogs
-        context['random_blogs'] = random.sample(list(blogs), 3)
-    else:
-        # Optional: Show all available blogs if less than 3
-        context['blogs'] = blogs
-    
+    blogs = Blog.objects.all().order_by('-time')[:3]
+    context = {'blogs': blogs}
+
     return render(request, 'index.html', context)
 
 
