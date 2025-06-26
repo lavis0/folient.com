@@ -28,6 +28,10 @@
             "dest": "/icons/$1"
         },
         {
+            "src": "/favicon.ico",
+            "dest": "/icons/favicon.ico"
+        },
+        {
             "src": "/static/(.*)",
             "dest": "/$1"
         },
