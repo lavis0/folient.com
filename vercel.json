@@ -20,8 +20,16 @@
     ],
     "routes": [
         {
+            "src": "/static/css/(.*)",
+            "dest": "/css/$1"
+        },
+        {
+            "src": "/static/icons/(.*)",
+            "dest": "/icons/$1"
+        },
+        {
             "src": "/static/(.*)",
-            "dest": "/staticfiles/$1"
+            "dest": "/$1"
         },
         {
             "src": "/media/(.*)",
