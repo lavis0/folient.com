@@ -12,10 +12,10 @@
 ## To-do
 
 - [x] Add markdown
-- [ ] Make only phone number mandatory
-- [ ] Add number spacing for phone numbers (less strict)
-- [ ] Force footer to stick to the bottom of the page
-- [ ] Make initial CSS style so the background is blue
+- [x] Make only one of email and phone number mandatory
+- [x] Add number spacing for phone numbers (less strict)
+- [x] Force footer to stick to the bottom of the page
+- [ ] Add projects
 - [ ] Add accessibility tags
 - [ ] Modify footer to make it more useful/aesthetic. Could contact and about go there?
 - [ ] Fix categories bug
