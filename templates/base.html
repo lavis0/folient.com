@@ -1,16 +1,77 @@
-{% load tailwind_tags %}
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <style>
+        /* Critical CSS - inline for instant loading */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f2937;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav {
+            background-color: #111827;
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .hero-section {
+            background-color: #374151;
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-section {
+            background-color: #111827;
+        }
+
+        .page-content {
+            padding: 1.25rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+
+            .page-content {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+        }
+    </style>
+
+    {% load tailwind_tags %}
+    {% load static %}
+
+    <link rel="preload" href="{% static 'css/dist/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/dist/styles.css' %}"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hostmind/host@latest/static/index.css">
+
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png' %}">
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png' %}">
@@ -31,7 +92,7 @@
     <title>{% block title %}{% endblock title %} - joshua banga</title>
     {% tailwind_css %}
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="h-full flex flex-col bg-gray-800 text-white">
     {% comment %} <div class="z-50 fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 	id="my-modal"></div> {% endcomment %}
     <nav class="nav bg-gray-900 text-white flex justify-between items-center p-3 px-8 md:px-20 sticky top-0 z-50">
@@ -58,7 +119,7 @@
         <a href="/contact" class="p-3 w-full text-center text-white hover:bg-gray-800">Contact</a>
     </div>
 
-    <main class="flex-grow bg-gray-800">
+    <main class="flex-1 bg-gray-800">
     {% block content %}{% endblock %}
     </main>
 
