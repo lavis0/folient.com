@@ -9,7 +9,7 @@
     <span class='text-center mt-2 text-gray-400'>by <a href='/about'><i class="bi bi-person"></i> <span class='group'><span class='group-hover:text-cyan-200 bg-left-bottom bg-gradient-to-r from-cyan-300 to-blue-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'>Joshua</span></span><a> <i class="bi bi-dot"></i> <span><i class="bi bi-calendar4-event"></i> {{blog.time}}</span> <i class="bi bi-dot"></i> <i class="bi bi-tag"></i> <a href='/category/{{blog.category}}'><span class='group'><span class='group-hover:text-cyan-200 bg-left-bottom bg-gradient-to-r from-cyan-300 to-blue-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out'>{{blog.category}}</span></span></span></a>
 {#    <img class='rounded-lg my-6 max-w-es lg:max-w-xs h-auto mx-auto' src="{{blog.thumbnail_url}}" >#}
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <div class='markdown-content'>
+    <div class='markdown-content mt-6'>
         {{blog.content|safe}}
     </div>
 </div>
@@ -49,4 +49,29 @@
         border-radius: 8px;
     }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize collapsible admonitions
+    const admonitions = document.querySelectorAll('.admonition');
+
+    admonitions.forEach(function(admonition) {
+        const title = admonition.querySelector('.admonition-title');
+        const content = admonition.querySelector('.admonition-content');
+
+        // Skip warning and danger types
+        if (admonition.classList.contains('warning') || admonition.classList.contains('danger')) {
+            return;
+        }
+
+        // Start collapsed by default
+        admonition.classList.add('collapsed');
+
+        // Add click handler
+        title.addEventListener('click', function() {
+            admonition.classList.toggle('collapsed');
+        });
+    });
+});
+</script>
+
 {% endblock %}
