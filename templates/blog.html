@@ -5,8 +5,8 @@
 
 {% block content %}
 
-<div class='bg-gray-800 text-white p-5 md:py-8 md:px-20 lg:px-40 xl:px-60'>
-    <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Blog</p>
+<div class='page-content bg-gray-800 text-white'>
+    <p style="font-family: Poppins-Bold,serif" class='text-4xl font-extrabold py-5 text-center md:text-start'>Blog</p>
     {% for blog in blogs %}
         <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05);" class='flex flex-col md:flex-row gap-4 md:gap-x-8 bg-gray-900 p-5 mb-4 rounded-lg'>
             <img class="post-img-url rounded-lg object-cover" style="height: 180px; width: 180px;" src="{{blog.thumbnail_url}}" alt="image">
