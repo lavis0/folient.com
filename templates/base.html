@@ -34,7 +34,7 @@
 <body class="min-h-screen flex flex-col">
     {% comment %} <div class="z-50 fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 	id="my-modal"></div> {% endcomment %}
-    <nav class="nav bg-gray-900 text-white flex justify-between items-center p-3 px-8 md:px-20">
+    <nav class="nav bg-gray-900 text-white flex justify-between items-center p-3 px-8 md:px-20 sticky top-0 z-50">
         <a href="/" class="text-lg font-mono">joshua banga</a>
         <div class='flex space-x-4 text-xl'>
 {#            <i class="searchBtn mt-1 bi bi-search text-sm cursor-pointer md:hidden"></i>#}
@@ -62,8 +62,8 @@
     {% block content %}{% endblock %}
     </main>
 
-    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-3 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 md:px-40'>
-        <div class='blog-name'>
+    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-3 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 px-8 md:px-20'>
+        <div class='blog-name md:col-span-2'>
             <p class='text-xl font-bold'>joshua banga<p>
             <p class='my-3 text-justify'>Explore my portfolio and blog to empower your development skills and create something amazing!</p>
         </div>
@@ -76,7 +76,7 @@
             </ul>
         </div> {% endcomment %}
 
-        <div class='socials'>
+        <div class='socials md:col-span-1'>
             <p class='text-xl font-bold'>Follow me<p>
             <ul class='my-3 flex text-xl'>
                 <li><a href="https://github.com/lavis0" class='hover:text-blue-100'><i class="bi bi-github"></i></a></li>
@@ -129,78 +129,81 @@
 </body>
 
 <style>
-  body {
-    font-family: Poppins;
-    transition: 0.3s ease-in-out;
-  }
+    html {
+        overflow-y: scroll;
+    }
+    body {
+        font-family: Poppins;
+        transition: 0.3s ease-in-out;
+    }
 
-  .wave {
-    animation-name: wave-animation; 
-    animation-duration: 2.5s;    
-    animation-iteration-count: infinite;
-    transform-origin: 70% 70%;    
-    display: inline-block;
-  }
-  
-  @keyframes wave-animation {
-      0% { transform: rotate( 0.0deg) }
-     10% { transform: rotate(14.0deg) }  
-     20% { transform: rotate(-8.0deg) }
-     30% { transform: rotate(14.0deg) }
-     40% { transform: rotate(-4.0deg) }
-     50% { transform: rotate(10.0deg) }
-     60% { transform: rotate( 0.0deg) }  
-    100% { transform: rotate( 0.0deg) }
-  }
+    .wave {
+        animation-name: wave-animation;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
+        transform-origin: 70% 70%;
+        display: inline-block;
+    }
 
-  .updn {
-    animation-name: up-down;  
-    animation-duration: 5s;        
-    animation-iteration-count: infinite; 
-  }
+    @keyframes wave-animation {
+          0% { transform: rotate( 0.0deg) }
+         10% { transform: rotate(14.0deg) }
+         20% { transform: rotate(-8.0deg) }
+         30% { transform: rotate(14.0deg) }
+         40% { transform: rotate(-4.0deg) }
+         50% { transform: rotate(10.0deg) }
+         60% { transform: rotate( 0.0deg) }
+        100% { transform: rotate( 0.0deg) }
+    }
 
-  @keyframes up-down {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
+    .updn {
+        animation-name: up-down;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
 
-.searchModal {
-  display: none;
-}
+    @keyframes up-down {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
 
-.animate-reveal {
-    animation: reveal 0.3s ease-out;
-  }
+    .searchModal {
+      display: none;
+    }
 
-@keyframes reveal {
-    from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-    to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
+    .animate-reveal {
+        animation: reveal 0.3s ease-out;
+      }
 
-@keyframes shake {
-  from, to {
-    transform: translate3d(0, 0, 0);
-  }
+    @keyframes reveal {
+        from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+        to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
 
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate3d(-10px, 0, 0);
-  }
+    @keyframes shake {
+      from, to {
+        transform: translate3d(0, 0, 0);
+      }
 
-  20%, 40%, 60%, 80% {
-    transform: translate3d(10px, 0, 0);
-  }
-}
+      10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-10px, 0, 0);
+      }
 
-.shake {
-  animation: shake 0.5s;
-}
+      20%, 40%, 60%, 80% {
+        transform: translate3d(10px, 0, 0);
+      }
+    }
+
+    .shake {
+      animation: shake 0.5s;
+    }
 
 </style>
 
