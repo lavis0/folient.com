@@ -127,6 +127,23 @@ def blogpost (request, slug):
     try:
         blog_post = Blog.objects.get(slug=slug)
         blog_post.content = md.convert(blog_post.content)
+        content = blog_post.content
+
+        # Find admonitions and restructure them
+        pattern = r'<div class="admonition ([^"]+)">\s*<p class="admonition-title">([^<]+)</p>\s*(.*?)\s*</div>'
+
+        def replace_admonition(match):
+            adm_type = match.group(1)
+            title = match.group(2)
+            content = match.group(3)
+
+            return f'''<div class="admonition {adm_type}">
+                        <div class="admonition-title">{title}</div>
+                        <div class="admonition-content">{content}</div>
+                    </div>'''
+
+        blog_post.content = re.sub(pattern, replace_admonition, content, flags=re.DOTALL)
+
         context = {'blog': blog_post}
         return render(request, 'blogpost.html', context)
     except Blog.DoesNotExist:
