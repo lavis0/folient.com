@@ -279,7 +279,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 /* Collapsed state arrow */
 .admonition.collapsed .admonition-title:after {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
 }
 
 /* Content area */
@@ -287,11 +287,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     padding: 16px;
     color: #a9b1d6;
     line-height: 1.6;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Hidden content for collapsed state */
 .admonition.collapsed .admonition-content {
-    display: none;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Content styles */

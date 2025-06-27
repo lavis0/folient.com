@@ -1,16 +1,78 @@
-{% load tailwind_tags %}
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <style>
+        {#* { outline: 1px solid red; }#}
+        /* Critical CSS - inline for instant loading */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f2937;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav {
+            background-color: #111827;
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .hero-section {
+            background-color: #374151;
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-section {
+            background-color: #111827;
+        }
+
+        .page-content {
+            padding: 1.25rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+
+            .page-content {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+        }
+    </style>
+
+    {% load tailwind_tags %}
+    {% load static %}
+
+    <link rel="preload" href="{% static 'css/dist/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/dist/styles.css' %}"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hostmind/host@latest/static/index.css">
+
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png' %}">
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png' %}">
@@ -31,7 +93,7 @@
     <title>{% block title %}{% endblock title %} - joshua banga</title>
     {% tailwind_css %}
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="h-full flex flex-col bg-gray-800 text-white">
     {% comment %} <div class="z-50 fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 	id="my-modal"></div> {% endcomment %}
     <nav class="nav bg-gray-900 text-white flex justify-between items-center p-3 px-8 md:px-20 sticky top-0 z-50">
@@ -50,23 +112,23 @@
           </div>
     </nav>
 
-    <div class="mob-nav bg-gray-900 hidden flex-col items-center w-full h-64 md:hidden">
-        <a href="/" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">Home</a>
-        <a href="/projects" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800 ">Projects</a>
-        <a href="/blog" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800 ">Blog</a>
-        <a href="/about" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">About</a>
-        <a href="/contact" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">Contact</a>
-      </div>
+    <div class="mob-nav bg-gray-900 hidden flex-col items-center w-full md:hidden border-t border-gray-700">
+        <a href="/" class="p-3 w-full text-center text-white hover:bg-gray-800 border-t border-gray-700">Home</a>
+        <a href="/projects" class="p-3 w-full text-center text-white hover:bg-gray-800">Projects</a>
+        <a href="/blog" class="p-3 w-full text-center text-white hover:bg-gray-800">Blog</a>
+        <a href="/about" class="p-3 w-full text-center text-white hover:bg-gray-800">About</a>
+        <a href="/contact" class="p-3 w-full text-center text-white hover:bg-gray-800">Contact</a>
+    </div>
 
-    <main class="flex-grow bg-gray-800">
+    <main class="flex-1 bg-gray-800">
     {% block content %}{% endblock %}
     </main>
 
-    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-3 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 px-8 md:px-20'>
-        <div class='blog-name md:col-span-2'>
-            <p class='text-xl font-bold'>joshua banga<p>
-            <p class='my-3 text-justify'>Explore my portfolio and blog to empower your development skills and create something amazing!</p>
-        </div>
+    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-1 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 px-8 md:px-20 justify-center'>
+{#        <div class='blog-name md:col-span-2'>#}
+{#            <p class='text-xl font-bold'>joshua banga<p>#}
+{#            <p class='my-3 text-justify'>Explore my portfolio and blog to empower your development skills and create something amazing!</p>#}
+{#        </div>#}
 
         {% comment %} <div class='pages'>
             <p class='text-xl font-bold'>Pages<p>
@@ -77,8 +139,8 @@
         </div> {% endcomment %}
 
         <div class='socials md:col-span-1'>
-            <p class='text-xl font-bold'>Follow me<p>
-            <ul class='my-3 flex text-xl'>
+            <p class='text-xl font-bold'>connect with me<p>
+            <ul class='my-3 flex text-xl justify-center'>
                 <li><a href="https://github.com/lavis0" class='hover:text-blue-100'><i class="bi bi-github"></i></a></li>
                 <li class='px-2'><a href="https://www.linkedin.com/in/joshua-banga/" class='hover:text-blue-100'><i class="bi bi-linkedin"></i></a></li>
             </ul>
@@ -133,8 +195,62 @@
         overflow-y: scroll;
     }
     body {
-        font-family: Poppins;
+        font-family: Poppins,serif;
         transition: 0.3s ease-in-out;
+    }
+
+    /* Nav positioning */
+    .nav {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Prevent layout shift by setting consistent padding immediately */
+    .page-content {
+        padding: 1.25rem; /* p-5 */
+    }
+
+    /* Mobile nav positioning - overlay approach with smooth easing */
+    .mob-nav {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out */
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        display: flex; /* Always flex, control visibility with transform/opacity */
+        flex-direction: column;
+    }
+
+    .mob-nav.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* When hidden, keep it off-screen */
+    .mob-nav.hidden {
+        transform: translateY(-100%);
+    }
+
+    /* Hamburger rotation with matching easing */
+    .nav-btn {
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-btn.rotated {
+        transform: rotate(-90deg);
+    }
+
+    @media (min-width: 768px) {
+        .page-content {
+            /* md:py-8 */
+            /* md:px-20 */
+            padding: 2rem 5rem;
+        }
     }
 
     .wave {
@@ -210,13 +326,69 @@
 <script>
   const toggleButton = document.querySelector('.nav-btn');
   const navbarContent = document.querySelector('.mob-nav');
+  const backdrop = document.querySelector('.mobile-backdrop'); // If you have backdrop
 
   toggleButton.addEventListener('click', () => {
     if (navbarContent.classList.contains('hidden')) {
+      // Show mobile nav
       navbarContent.classList.replace('hidden', 'flex');
+      navbarContent.classList.add('show');
+
+      // Show backdrop (if you have it)
+      if (backdrop) {
+        backdrop.classList.replace('hidden', 'block');
+        backdrop.classList.add('show');
+      }
+
+      // Rotate hamburger instead of changing to X
+      toggleButton.classList.add('rotated');
     } else {
+      // Hide mobile nav
       navbarContent.classList.replace('flex', 'hidden');
+      navbarContent.classList.remove('show');
+
+      // Hide backdrop (if you have it)
+      if (backdrop) {
+        backdrop.classList.replace('block', 'hidden');
+        backdrop.classList.remove('show');
+      }
+
+      // Rotate back to normal
+      toggleButton.classList.remove('rotated');
     }
+  });
+
+  // Update click outside handler
+  document.addEventListener('click', function(e) {
+    if (!toggleButton.contains(e.target) && !navbarContent.contains(e.target)) {
+      if (!navbarContent.classList.contains('hidden')) {
+        navbarContent.classList.replace('flex', 'hidden');
+        navbarContent.classList.remove('show');
+
+        // Hide the backdrop and remove rotation
+        if (backdrop) {
+          backdrop.classList.replace('block', 'hidden');
+          backdrop.classList.remove('show');
+        }
+        toggleButton.classList.remove('rotated');
+      }
+    }
+  });
+
+  // Update link click handler
+  const mobNavLinks = navbarContent.querySelectorAll('a');
+  mobNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navbarContent.classList.replace('flex', 'hidden');
+      navbarContent.classList.remove('show');
+
+      // Hide the backdrop and remove rotation
+      if (backdrop) {
+        backdrop.classList.replace('block', 'hidden');
+        backdrop.classList.remove('show');
+      }
+      toggleButton.classList.remove('rotated');
+    });
   });
 
   // Store DOM elements in variables

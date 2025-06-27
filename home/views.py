@@ -10,13 +10,6 @@ import random
 import re
 import markdown
 
-# Create your views here.
-# def index (request):
-#     blogs = Blog.objects.all()
-#     random_blogs = random.sample(list(blogs), 3)
-#     context = {'random_blogs': random_blogs}
-#     return render(request, 'index.html', context)
-
 def index(request):
     blogs = Blog.objects.all().order_by('-time')[:3]
     context = {'blogs': blogs}
@@ -149,8 +142,3 @@ def blogpost (request, slug):
     except Blog.DoesNotExist:
         context = {'message': 'Blog post not found'}
         return render(request, '404.html', context, status=404)
-
-# def blogpost (request, slug):
-#     blog = Blog.objects.filter(slug=slug).first()
-#     context = {'blog': blog}
-#     return render(request, 'blogpost.html', context)

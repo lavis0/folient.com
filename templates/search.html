@@ -1,8 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block title %}{{query}}{%
-endblock title %} {% block content %} {% comment %} {% for blog in blogs %}
+{% extends 'base.html' %} {% load static %} {% block title %}{{query}}{% endblock title %} {% block content %} {% for blog in blogs %}
 {{blog.title}}
 <img src="{{blog.thumbnail_img.url}}" />
-{% endfor %} {% endcomment %} {% comment %}
+{% endfor %} {% comment %}
 <div class="container mx-auto p-5 bg-gray-800 text-white">
 	<div class="grid grid-cols-1 md:grid-cols-2 bg-gray-900 p-5">
 		<div class="flex justify-center">
@@ -34,7 +33,7 @@ endblock title %} {% block content %} {% comment %} {% for blog in blogs %}
 </div>
 {% endcomment %}
 
-<div class="bg-gray-800 text-white p-5 md:py-8 md:px-20 lg:px-40 xl:px-60">
+<div class='page-content bg-gray-800 text-white'>
 	<p
 		style="font-family: Poppins-Bold"
 		class="text-4xl font-extrabold py-5 text-center md:text-start"
