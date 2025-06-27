@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        {#* { outline: 1px solid red; }#}
         /* Critical CSS - inline for instant loading */
         html, body {
             height: 100%;
@@ -123,11 +124,11 @@
     {% block content %}{% endblock %}
     </main>
 
-    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-3 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 px-8 md:px-20'>
-        <div class='blog-name md:col-span-2'>
-            <p class='text-xl font-bold'>joshua banga<p>
-            <p class='my-3 text-justify'>Explore my portfolio and blog to empower your development skills and create something amazing!</p>
-        </div>
+    <footer class='bg-gray-900 text-white p-8 pb-2 grid md:grid-cols-1 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 px-8 md:px-20 justify-center'>
+{#        <div class='blog-name md:col-span-2'>#}
+{#            <p class='text-xl font-bold'>joshua banga<p>#}
+{#            <p class='my-3 text-justify'>Explore my portfolio and blog to empower your development skills and create something amazing!</p>#}
+{#        </div>#}
 
         {% comment %} <div class='pages'>
             <p class='text-xl font-bold'>Pages<p>
@@ -138,8 +139,8 @@
         </div> {% endcomment %}
 
         <div class='socials md:col-span-1'>
-            <p class='text-xl font-bold'>Follow me<p>
-            <ul class='my-3 flex text-xl'>
+            <p class='text-xl font-bold'>connect with me<p>
+            <ul class='my-3 flex text-xl justify-center'>
                 <li><a href="https://github.com/lavis0" class='hover:text-blue-100'><i class="bi bi-github"></i></a></li>
                 <li class='px-2'><a href="https://www.linkedin.com/in/joshua-banga/" class='hover:text-blue-100'><i class="bi bi-linkedin"></i></a></li>
             </ul>
