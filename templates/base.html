@@ -50,13 +50,13 @@
           </div>
     </nav>
 
-    <div class="mob-nav bg-gray-900 hidden flex-col items-center w-full h-64 md:hidden">
-        <a href="/" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">Home</a>
-        <a href="/projects" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800 ">Projects</a>
-        <a href="/blog" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800 ">Blog</a>
-        <a href="/about" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">About</a>
-        <a href="/contact" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-gray-800">Contact</a>
-      </div>
+    <div class="mob-nav bg-gray-900 hidden flex-col items-center w-full md:hidden border-t border-gray-700">
+        <a href="/" class="p-3 w-full text-center text-white hover:bg-gray-800 border-t border-gray-700">Home</a>
+        <a href="/projects" class="p-3 w-full text-center text-white hover:bg-gray-800">Projects</a>
+        <a href="/blog" class="p-3 w-full text-center text-white hover:bg-gray-800">Blog</a>
+        <a href="/about" class="p-3 w-full text-center text-white hover:bg-gray-800">About</a>
+        <a href="/contact" class="p-3 w-full text-center text-white hover:bg-gray-800">Contact</a>
+    </div>
 
     <main class="flex-grow bg-gray-800">
     {% block content %}{% endblock %}
@@ -133,8 +133,62 @@
         overflow-y: scroll;
     }
     body {
-        font-family: Poppins;
+        font-family: Poppins,serif;
         transition: 0.3s ease-in-out;
+    }
+
+    /* Nav positioning */
+    .nav {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Prevent layout shift by setting consistent padding immediately */
+    .page-content {
+        padding: 1.25rem; /* p-5 */
+    }
+
+    /* Mobile nav positioning - overlay approach with smooth easing */
+    .mob-nav {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out */
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        display: flex; /* Always flex, control visibility with transform/opacity */
+        flex-direction: column;
+    }
+
+    .mob-nav.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* When hidden, keep it off-screen */
+    .mob-nav.hidden {
+        transform: translateY(-100%);
+    }
+
+    /* Hamburger rotation with matching easing */
+    .nav-btn {
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-btn.rotated {
+        transform: rotate(-90deg);
+    }
+
+    @media (min-width: 768px) {
+        .page-content {
+            /* md:py-8 */
+            /* md:px-20 */
+            padding: 2rem 5rem;
+        }
     }
 
     .wave {
@@ -210,13 +264,69 @@
 <script>
   const toggleButton = document.querySelector('.nav-btn');
   const navbarContent = document.querySelector('.mob-nav');
+  const backdrop = document.querySelector('.mobile-backdrop'); // If you have backdrop
 
   toggleButton.addEventListener('click', () => {
     if (navbarContent.classList.contains('hidden')) {
+      // Show mobile nav
       navbarContent.classList.replace('hidden', 'flex');
+      navbarContent.classList.add('show');
+
+      // Show backdrop (if you have it)
+      if (backdrop) {
+        backdrop.classList.replace('hidden', 'block');
+        backdrop.classList.add('show');
+      }
+
+      // Rotate hamburger instead of changing to X
+      toggleButton.classList.add('rotated');
     } else {
+      // Hide mobile nav
       navbarContent.classList.replace('flex', 'hidden');
+      navbarContent.classList.remove('show');
+
+      // Hide backdrop (if you have it)
+      if (backdrop) {
+        backdrop.classList.replace('block', 'hidden');
+        backdrop.classList.remove('show');
+      }
+
+      // Rotate back to normal
+      toggleButton.classList.remove('rotated');
     }
+  });
+
+  // Update click outside handler
+  document.addEventListener('click', function(e) {
+    if (!toggleButton.contains(e.target) && !navbarContent.contains(e.target)) {
+      if (!navbarContent.classList.contains('hidden')) {
+        navbarContent.classList.replace('flex', 'hidden');
+        navbarContent.classList.remove('show');
+
+        // Hide the backdrop and remove rotation
+        if (backdrop) {
+          backdrop.classList.replace('block', 'hidden');
+          backdrop.classList.remove('show');
+        }
+        toggleButton.classList.remove('rotated');
+      }
+    }
+  });
+
+  // Update link click handler
+  const mobNavLinks = navbarContent.querySelectorAll('a');
+  mobNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navbarContent.classList.replace('flex', 'hidden');
+      navbarContent.classList.remove('show');
+
+      // Hide the backdrop and remove rotation
+      if (backdrop) {
+        backdrop.classList.replace('block', 'hidden');
+        backdrop.classList.remove('show');
+      }
+      toggleButton.classList.remove('rotated');
+    });
   });
 
   // Store DOM elements in variables
