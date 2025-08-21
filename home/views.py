@@ -73,7 +73,8 @@ def contact (request):
     return render(request, 'contact.html', context)
 
 def projects (request):
-    return render(request, 'projects.html')
+    return redirect('https://github.com/lavis0', permanent=True)
+    # return render(request, 'projects.html')
 
 def blog(request):
     blogs = Blog.objects.all().order_by('-time')
